@@ -1,0 +1,148 @@
+package com.example.freetalk;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+
+//import com.facebook.FacebookSdk;
+//import com.facebook.appevents.AppEventsLogger;
+import android.app.Activity;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+//import com.facebook.internal.ImageRequest;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class MainActivity extends Activity {
+
+    ChatMessage chatMessage;
+
+    {
+        chatMessage = new ChatMessage("hi firend", "type", true, "user1");
+    }
+
+    DatabaseReference mdata;
+    LoginButton loginfb_btn;
+    private Button btnDangNhap;
+    TextView txtName;
+    TextView Email;
+    CallbackManager callbackManager;
+    CircleImageView circleImageView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_main);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
+        txtName = findViewById(R.id.info);
+        Email= findViewById(R.id.txtEmail);
+        loginfb_btn = findViewById(R.id.logi_btn);
+        circleImageView= findViewById(R.id.profile_pic);
+        btnDangNhap = (Button) findViewById(R.id.login_btn) ;
+        btnDangNhap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(MainActivity.this,ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        callbackManager = CallbackManager.Factory.create();
+        loginfb_btn.setReadPermissions(Arrays.asList("email","public_profile"));
+        loginfb_btn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+
+        //mdata= FirebaseDatabase.getInstance().getReference();
+       // mdata.child("RoomChat").push().setValue(chatMessage);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    AccessTokenTracker tokenTracker= new AccessTokenTracker() {
+        @Override
+        protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken)
+        {
+            if(currentAccessToken== null)
+            {
+                Email.setText("");
+                txtName.setText("");
+                circleImageView.setImageResource(0);
+                Toast.makeText(MainActivity.this,"user logged out",Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                loadUserProifile(currentAccessToken);
+            }
+        }
+    };
+    private void loadUserProifile(AccessToken newAccessToken)
+    {
+        GraphRequest request= GraphRequest.newMeRequest(newAccessToken, new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject object, GraphResponse response) {
+                try {
+                    String first_name= object.getString("first_name");
+                    String last_name= object.getString("last_name");
+                    String email= object.getString("email");
+                    String id= object.getString("id");
+                    String image_url="https://graph.facebook.com/"+id+ "/picture?type=normal";
+
+                    txtName.setText(first_name+" "+last_name);
+                    Email.setText(email);
+
+                    Glide.with(MainActivity.this).load(image_url).into(circleImageView);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Bundle parameter = new Bundle();
+        parameter.putString("fields","first_name,last_name,email,id");
+        request.executeAsync();
+    }
+
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/faboptions_settings"
+        android:icon="@drawable/account_icon"
+        android:title="Cài đặt tài khoản" />
+
+    <item
+        android:id="@+id/faboptions_users"
+        android:icon="@drawable/users_icon"
+        android:title="Mọi người" />
+
+    <item
+        android:id="@+id/faboptions_maps"
+        android:icon="@drawable/maps_icon"
+        android:title="Bản đồ" />
+
+
+    <item
+        android:id="@+id/faboptions_logout"
+        android:icon="@drawable/logout_icon"
+        android:title="Đăng xuất" />
+</menu>

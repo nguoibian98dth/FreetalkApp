@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EBEBEB"
+    tools:context=".ChatActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <!--toolbar của mỗi user là khác nhau  nên sd ?android:attr/+ size bar-->
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileiv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_default"/>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="10dp">
+
+
+
+            <TextView
+                android:id="@+id/nametv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Your name"
+                android:textColor="#FFFFFF"/>
+
+            <TextView
+                android:id="@+id/userStatusTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text=""
+                android:textColor="#FFFFFF"/>
+
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/chatLayout">
+
+    </androidx.recyclerview.widget.RecyclerView>
+    
+    <LinearLayout
+        android:id="@+id/chatLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/chatLayout"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark">
+
+        <ImageButton
+            android:id="@+id/attachBTN"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:src="@drawable/ic_attach_file_black"/>
+
+        <EditText
+
+            android:id="@+id/messageTV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#95F5EFEF"
+            android:hint="Nội dung tin nhắn"
+            android:inputType="textCapSentences|textMultiLine"
+            android:textColor="#424141"
+            android:textSize="15dp"
+            android:padding="10dp">
+
+        </EditText>
+        
+        <ImageButton
+            android:id="@+id/sendbtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#EBEBEB"
+            android:src="@drawable/ic_send_mess"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
+

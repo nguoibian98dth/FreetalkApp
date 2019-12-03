@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg_freetalk"
+    tools:context="com.example.freetalk.RegisterActivity">
+
+    <EditText
+        android:id="@+id/reg_display_name"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/reg_email"
+        android:layout_alignStart="@+id/reg_email"
+        android:layout_alignLeft="@+id/reg_email"
+        android:background="#95CFB5B7"
+        android:hint="Họ tên hiển thị"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="#585252"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/reg_email"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/reg_password"
+        android:layout_alignStart="@+id/reg_password"
+        android:layout_alignLeft="@+id/reg_password"
+        android:background="#95CFB5B7"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textColor="#585252"
+        android:layout_marginBottom="20dp"
+        android:textSize="20dp" />
+
+
+    <EditText
+        android:id="@+id/reg_password"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/reg_create_btn"
+        android:layout_alignStart="@+id/reg_create_btn"
+        android:layout_alignLeft="@+id/reg_create_btn"
+        android:layout_marginBottom="37dp"
+        android:background="#95CFB5B7"
+        android:hint="Mật khẩu"
+        android:inputType="numberPassword"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textColor="#585252"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/reg_create_btn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="65dp"
+        android:background="#F11541"
+        android:text="Bắt đầu"
+        android:textAllCaps="false"
+        android:textColor="#F8F8F8"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/register_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Mời Bạn Tạo Tài Khoản"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+</RelativeLayout>

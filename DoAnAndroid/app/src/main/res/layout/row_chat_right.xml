@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/messageLayout"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="end"
+        android:layout_height="wrap_content">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/profileIV"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:civ_border_color="@null"
+            android:src="@drawable/ic_default_img"
+            android:visibility="gone"/>
+
+
+        <TextView
+            android:id="@+id/messageTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_sender"
+            android:padding="20dp"
+            android:text="Your message"
+            android:textColor="#333131"
+            android:textSize="16sp"
+            android:layout_alignParentEnd="true"/>
+
+        <ImageView
+            android:id="@+id/messageIV"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            android:layout_alignParentEnd="true"
+            android:padding="15dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_image_black"
+            android:background="@drawable/bg_sender"
+            />
+
+
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/timeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1/1/2019 09:19 AM"
+        android:layout_gravity="right"
+        android:textSize="12sp"
+        android:textColor="#858581"/>
+
+
+    <TextView
+        android:id="@+id/isSeenTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_gravity="end"
+        android:textAlignment="textEnd" />
+
+
+
+</LinearLayout>
