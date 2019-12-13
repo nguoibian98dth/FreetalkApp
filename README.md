@@ -1,2 +1,3 @@
 # FreetalkApp
-Phần mềm sử dụng CSDL Firebase
+Ứng dụng chat trực tuyến viết bằng Android Native
+Sử dụng CSDL Firebase
